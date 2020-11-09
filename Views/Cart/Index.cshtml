@@ -1,0 +1,98 @@
+﻿@model List<OnlineShopFinal.Models.CartItem>
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- page -->
+<div class="services-breadcrumb">
+    <div class="agile_inner_breadcrumb">
+        <div class="container">
+            <ul class="w3_short">
+                <li>
+                    <a href="/">Home</a>
+                    <i>|</i>
+                </li>
+                <li>Giỏ hàng</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- //page -->
+<!-- checkout page -->
+<div class="privacy py-sm-5 py-4">
+    <div class="container py-xl-4 py-lg-2">
+        <!-- tittle heading -->
+        <h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+            <span>G</span>iỏ
+            <span>H</span>àng
+        </h3>
+        <!-- //tittle heading -->
+        <div class="checkout-right">
+            <h4 class="mb-sm-4 mb-3">
+                Giỏ hàng của bạn có: @Model.Count
+                <span>Sản phẩm</span>
+            </h4>
+            <div class="table-responsive">
+                <table class="timetable_sub">
+                    <thead>
+                        <tr>
+                            <th>Mã SP</th>
+                            <th>Tên SP</th>
+                            <th>Ảnh SP</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Thành tiền</th>
+                            <th>Xoá</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr class="rem1">
+                            <td class="invert">@item.Product.ID</td>
+                            <td class="invert">@item.Product.Name</td>
+                            <td class="invert-image">
+                                <a href="single.html">
+                                    <img src="@item.Product.Image" alt=" " class="img-responsive">
+                                </a>
+                            </td>
+                            <td class="invert">
+                                <div class="quantity">
+                                    <div class="quantity-select">
+                                        <div class="entry value-minus">&nbsp;</div>
+                                        <div class="entry value">
+                                            <span>@item.Quantity</span>
+                                        </div>
+                                        <div class="entry value-plus active">&nbsp;</div>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="item_price">@item.Product.Price.GetValueOrDefault(0).ToString("N0")</td>
+                            <td class="item_price">@((item.Product.Price.GetValueOrDefault(0) * @item.Quantity).ToString("N0"))</td>
+                            <td class="invert">
+                                <div class="rem">
+                                    <div class="close1"> </div>
+                                </div>
+                            </td>
+                        </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+                <div class="checkout-right-basket">
+                    <a href="/thanh-toan">
+                        Thanh toán
+                        <span class="far fa-hand-point-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //checkout page -->
